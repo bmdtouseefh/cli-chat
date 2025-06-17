@@ -1,6 +1,11 @@
 from sqlalchemy import create_engine, ForeignKey 
 from sqlalchemy.orm import declarative_base, Mapped, mapped_column, sessionmaker, DeclarativeBase, Session
+import os
+import dotenv 
 
+dotenv.load_dotenv()
+
+DB_URL=os.getenv("DB_URL")
 
 class Base(DeclarativeBase):
     pass
@@ -21,7 +26,7 @@ class Chats(Base):
     response_text: Mapped[str]
 
 
-DB_URL = "postgresql://postgres:sec1122@localhost:5432/ai"
+
 
 engine = create_engine(DB_URL, echo=True)
 

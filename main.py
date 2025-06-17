@@ -2,13 +2,18 @@
 from google import genai
 from fastapi import FastAPI
 from fastapi import Depends
-
+import os
+import dotenv
 from database import session, Session, Chats, User
 from sqlalchemy import select, insert
 
 app = FastAPI()
 
-client = genai.Client(api_key="AIzaSyAdN472me0CDtniux59_ACalokXaZ2Mxs8")
+dotenv.load_dotenv()
+
+apikey=os.getenv("GOOGLE_API_KEY")
+
+client = genai.Client(api_key=apikey)
 
 
 def get_db():
